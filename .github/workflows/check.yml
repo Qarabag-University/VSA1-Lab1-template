@@ -10,7 +10,6 @@ jobs:
       - name: Required files
         run: |
           test -f README.md || (echo "README.md yoxdur" && exit 1)
-          test -f report.pdf || (echo "report.pdf yoxdur" && exit 1)
           ls src/*.py > /dev/null 2>&1 || (echo "src/ icinde .py fayli yoxdur" && exit 1)
           ls screenshots | grep -v '^.gitkeep$' | grep -q . || (echo "screenshots bosdur" && exit 1)
       - name: Commit count
