@@ -1,8 +1,8 @@
 # Laboratory Work 1: Linked Lists
 
-**Name:** 
-**Group:** 
-**Student ID:** 
+- **Name:** 
+- **Group:** 
+- **Student ID:** 
 
 ## Implemented operations
 - 
@@ -11,4 +11,4 @@
 
 
 ## How to run
-python src/linkedlist.py
+`python src/linkedlist.py`
