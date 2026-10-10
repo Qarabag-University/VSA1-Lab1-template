@@ -1,0 +1,26 @@
+name: Structure check
+on: [push]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Required files
+        run: |
+          test -f README.md || (echo "README.md yoxdur" && exit 1)
+          test -f report.pdf || (echo "report.pdf yoxdur" && exit 1)
+          ls src/*.py > /dev/null 2>&1 || (echo "src/ icinde .py fayli yoxdur" && exit 1)
+          ls screenshots | grep -v '^.gitkeep$' | grep -q . || (echo "screenshots bosdur" && exit 1)
+      - name: Commit count
+        run: |
+          count=$(git rev-list --count HEAD)
+          echo "Commit sayi: $count"
+          test "$count" -ge 3
+      - name: Bad commit messages
+        run: |
+          if git log --pretty=%s | grep -iqE '^(update|final|lab|123|test)$'; then
+            echo "Qebul edilmeyen commit mesaji tapildi"
+            exit 1
+          fi
